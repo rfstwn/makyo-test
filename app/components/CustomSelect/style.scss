@@ -18,7 +18,7 @@
         @apply relative w-full;
 
         &__input {
-            @apply relative flex justify-between items-start gap-2;
+            @apply relative bg-white flex justify-between items-start gap-2;
             @apply w-full border rounded-sm;
 
             &__icon {

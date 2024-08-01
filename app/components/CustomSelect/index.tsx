@@ -5,6 +5,7 @@ import { iDataOption, iOption, iPropsCustomSelect } from "./CustomSelect.type";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
+import PropTypes from "prop-types";
 
 const CustomSelect = (props: iPropsCustomSelect) => {
     // Initialize state for data and option display
@@ -48,7 +49,7 @@ const CustomSelect = (props: iPropsCustomSelect) => {
         const index = dataTemp.findIndex((findItem) => findItem.value == item.value);
 
         if (index == -1) {
-            if ((!props.setting.multiple && props.value.length === 0) || props.setting.multiple) dataTemp.push(item);
+            if ((!props.isMultiple && props.value.length === 0) || props.isMultiple) dataTemp.push(item);
         } else {
             dataTemp.splice(index, 1);
         }
@@ -57,7 +58,7 @@ const CustomSelect = (props: iPropsCustomSelect) => {
     }
 
     return (
-        <div className={`custom-combobox ${props.position == "column" ? "flex-col" : "flex-row"}`} style={{ zIndex: props.setting.zIndex }}>
+        <div className={`custom-combobox ${props.position == "column" ? "flex-col" : "flex-row"}`} style={{ zIndex: props.zIndex }}>
             <label htmlFor={props.id} className="custom-combobox__label">
                 {props.label}
             </label>
@@ -82,7 +83,7 @@ const CustomSelect = (props: iPropsCustomSelect) => {
                 </div>
 
                 <div className={`custom-combobox__content__option ${openOption ? "flex" : "hidden"}`}>
-                    {props.setting.search && (
+                    {props.isSearch && (
                         <div className="custom-combobox__content__option__search">
                             <CiSearch />
                             <input className="border" type="text" onChange={(e) => setSearchKey(e.target.value)} value={searchKey} />
@@ -110,3 +111,16 @@ const CustomSelect = (props: iPropsCustomSelect) => {
 };
 
 export default CustomSelect;
+
+CustomSelect.prototypes = {
+    id: PropTypes.string,
+    isSearch: PropTypes.bool,
+    isMultiple: PropTypes.bool,
+    zIndex: PropTypes.number,
+    label: PropTypes.string,
+    data: PropTypes.array,
+    value: PropTypes.array,
+    onSelect: PropTypes.func,
+    placeholder: PropTypes.string,
+    position: PropTypes.oneOf(["row", "column"]),
+};

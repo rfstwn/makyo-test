@@ -4,7 +4,7 @@ import { useId, useState } from "react";
 import CustomSelect from "./components/CustomSelect";
 import { iDataOption, iSetting } from "./components/CustomSelect/CustomSelect.type";
 
-interface iDataSubmit {
+export interface iDataSubmit {
     name: string;
     address: string;
     position: Array<iDataOption>;
@@ -36,13 +36,6 @@ export default function Home() {
         },
     ];
 
-    //Costumize Setting
-    const setting: iSetting = {
-        search: true,
-        multiple: true,
-        zIndex: 9999,
-    };
-
     const id_input_name = useId(),
         id_input_address = useId(),
         id_input_position = useId();
@@ -72,7 +65,9 @@ export default function Home() {
                 <CustomSelect
                     id={id_input_position}
                     data={data}
-                    setting={setting}
+                    isMultiple={true}
+                    isSearch={true}
+                    zIndex={999}
                     value={selectData}
                     onSelect={(data: iDataOption[]) => setSelectData(data)}
                     label="Position"
