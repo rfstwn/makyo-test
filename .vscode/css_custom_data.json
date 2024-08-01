@@ -1,0 +1,13 @@
+{
+    "version": 1.0,
+    "atDirectives": [
+        {
+            "name": "@tailwind",
+            "content": "use the @tailwind directive"
+        },
+        {
+            "name": "@apply",
+            "content": "use the tailwind with the @apply directive"
+        }
+    ]
+}

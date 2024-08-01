@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::placeholder {
+    @apply text-slate-400 text-xs;
+}
+
+.form-group {
+    @apply flex gap-5 justify-start items-start;
+    @apply text-sm text-slate-600;
+
+    label {
+        @apply w-28 mt-2;
+    }
+
+    input,
+    textarea {
+        @apply border p-2 w-full rounded-sm text-xs text-slate-600;
+        &:focus {
+            @apply outline-none;
+        }
+    }
+}

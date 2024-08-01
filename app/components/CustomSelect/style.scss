@@ -1,0 +1,78 @@
+.custom-combobox {
+    @apply flex items-start justify-start gap-5;
+    @apply font-sans text-gray-800 text-sm;
+
+    span.hilight {
+        @apply bg-emerald-500;
+    }
+
+    span.placeholder {
+        @apply text-slate-400 text-xs;
+    }
+
+    &__label {
+        @apply w-28 mt-2 text-slate-600;
+    }
+
+    &__content {
+        @apply relative w-full;
+
+        &__input {
+            @apply relative flex justify-between items-start gap-2;
+            @apply w-full border rounded-sm;
+
+            &__icon {
+                @apply absolute right-2 top-1/2 -translate-y-1/2 text-slate-600;
+            }
+            &__wrapper {
+                @apply p-2 flex justify-start items-center h-10 overflow-y-scroll gap-2 flex-wrap;
+            }
+
+            &__item {
+                @apply bg-slate-200 text-slate-500 text-xs rounded-full py-1 px-2;
+                @apply flex items-center justify-center gap-1 flex-nowrap;
+
+                button {
+                    @apply text-slate-700 text-base;
+                }
+            }
+        }
+
+        &__option {
+            @apply absolute top-[45px];
+            @apply bg-white border border-slate-200 shadow-lg w-full;
+            @apply flex-col;
+
+            &__search {
+                @apply border-b border-slate-200 py-0 px-3;
+                @apply flex justify-start items-center;
+                svg {
+                    @apply text-base text-slate-500;
+                }
+
+                input {
+                    @apply bg-white border-none py-2 px-3 w-full;
+                    @apply text-xs text-slate-600;
+                    &:focus {
+                        @apply outline-none;
+                    }
+                }
+            }
+            &__list {
+                @apply flex flex-col justify-start items-start;
+
+                &__item {
+                    @apply py-2 px-3;
+                    @apply text-xs text-slate-600 w-full;
+
+                    &:hover {
+                        @apply bg-green-50;
+                    }
+                }
+                &__item-selected {
+                    @apply bg-green-50;
+                }
+            }
+        }
+    }
+}
