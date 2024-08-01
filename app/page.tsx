@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import CustomSelect from "./components/CustomSelect";
-import { iDataOption, iSetting } from "./components/CustomSelect/CustomSelect.type";
+import { iDataOption } from "./components/CustomSelect/CustomSelect.type";
 
 export interface iDataSubmit {
     name: string;
