@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Test Company
 
-## Getting Started
+## Project Information
 
-First, run the development server:
+**Company Name** : Makyo Co
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Project Url** : [https://custom-select-example.vercel.app](https://custom-select-example.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Storybook Url** : [https://custom-select-storybook.vercel.app](https://custom-select-storybook.vercel.app/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Credential for dummy login** : None
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## How to use Component [Custom Select]
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Import component from folder `components`
+    ```
+        import CustomSelect from "@/app/components/CustomSelect";
+    ```
+-   Create state with default value is Array, for example
+    ```
+        const [selectData, setSelectData] = useState([]);
+    ```
+-   Use component with props
+    ```
+        <CustomSelect {...props} />
+    ```
+-   List props of components
+    | Props Name | Require | value |
+    | :--- | :--- | :--- |
+    | **id** | Yes | string |
+    | **label** | Yes | string |
+    | **isMultiple** | No | boolean, default `true` |
+    | **isSearch** | No | boolean, default `true` |
+    | **data** | Yes | Array of Object, example [{ label: `string`, value: `number` or `string` }] |
+    | **position** | No | `raw` or `column` |
+    | **zIndex** | No | number, default `999` |
+    | **placeholder** | No | string |
+    | **value** | Yes | previously initialized state example `selectData` |
+    | **onSelect** | Yes | callback function for set state `selectData` |

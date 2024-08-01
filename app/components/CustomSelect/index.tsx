@@ -7,9 +7,20 @@ import { IoIosArrowDown } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import PropTypes from "prop-types";
 
-const CustomSelect = (props: iPropsCustomSelect) => {
+const CustomSelect = ({
+    id,
+    label,
+    data,
+    value,
+    onSelect,
+    placeholder,
+    isSearch = true,
+    isMultiple = true,
+    zIndex = 999,
+    position = "row",
+}: iPropsCustomSelect) => {
     // Initialize state for data and option display
-    const [dataDisplay, setDataDisplay] = useState<Array<iOption>>(props.data.map((obj) => ({ ...obj, label_display: obj.label })));
+    const [dataDisplay, setDataDisplay] = useState<Array<iOption>>(data.map((obj) => ({ ...obj, label_display: obj.label })));
     const [openOption, setOpenOption] = useState<boolean>(false);
 
     // Handle Close Option when click outside
@@ -44,46 +55,46 @@ const CustomSelect = (props: iPropsCustomSelect) => {
     }, [searchKey]);
 
     // Handle Select or Deselect Option
-    function onSelect(item: iDataOption) {
-        const dataTemp = [...props.value];
+    function onSelectItem(item: iDataOption) {
+        const dataTemp = [...value];
         const index = dataTemp.findIndex((findItem) => findItem.value == item.value);
 
         if (index == -1) {
-            if ((!props.isMultiple && props.value.length === 0) || props.isMultiple) dataTemp.push(item);
+            if ((!isMultiple && value.length === 0) || isMultiple) dataTemp.push(item);
         } else {
             dataTemp.splice(index, 1);
         }
 
-        props.onSelect(dataTemp);
+        onSelect(dataTemp);
     }
 
     return (
-        <div className={`custom-combobox ${props.position == "column" ? "flex-col" : "flex-row"}`} style={{ zIndex: props.zIndex }}>
-            <label htmlFor={props.id} className="custom-combobox__label">
-                {props.label}
+        <div className={`custom-combobox ${position == "column" ? "flex-col" : "flex-row"}`} style={{ zIndex: zIndex }}>
+            <label htmlFor={id} className="custom-combobox__label">
+                {label}
             </label>
 
-            <div id={props.id} ref={wrapperRef} className="custom-combobox__content">
+            <div id={id} ref={wrapperRef} className="custom-combobox__content">
                 <div className="custom-combobox__content__input" onClick={() => setOpenOption(true)}>
                     <div className="custom-combobox__content__input__wrapper">
-                        {props.value.length > 0 ? (
-                            props.value.map((item, index) => (
+                        {value.length > 0 ? (
+                            value.map((item, index) => (
                                 <div className="custom-combobox__content__input__item" key={index}>
                                     {item.label}
-                                    <button type="button" onClick={() => onSelect(item)}>
+                                    <button type="button" onClick={() => onSelectItem(item)}>
                                         <IoCloseCircleOutline />
                                     </button>
                                 </div>
                             ))
                         ) : (
-                            <span className="placeholder">{props.placeholder}</span>
+                            <span className="placeholder">{placeholder}</span>
                         )}
                     </div>
                     <IoIosArrowDown className="custom-combobox__content__input__icon" />
                 </div>
 
                 <div className={`custom-combobox__content__option ${openOption ? "flex" : "hidden"}`}>
-                    {props.isSearch && (
+                    {isSearch && (
                         <div className="custom-combobox__content__option__search">
                             <CiSearch />
                             <input className="border" type="text" onChange={(e) => setSearchKey(e.target.value)} value={searchKey} />
@@ -94,11 +105,10 @@ const CustomSelect = (props: iPropsCustomSelect) => {
                         {dataDisplay.map((item, index) => (
                             <div
                                 className={`custom-combobox__content__option__list__item ${
-                                    props.value.find((findItem) => findItem.value == item.value) &&
-                                    "custom-combobox__content__option__list__item-selected"
+                                    value.find((findItem) => findItem.value == item.value) && "custom-combobox__content__option__list__item-selected"
                                 }`}
                                 key={index}
-                                onClick={() => onSelect(item)}
+                                onClick={() => onSelectItem(item)}
                             >
                                 <span className="post__content" dangerouslySetInnerHTML={{ __html: item.label_display }} />
                             </div>

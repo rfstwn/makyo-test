@@ -13,9 +13,9 @@ export interface iPropsCustomSelect {
     data: Array<iDataOption>;
     onSelect: Function;
     label: string;
-    placeholder: string;
-    isSearch: boolean;
-    isMultiple: boolean;
-    zIndex: number;
-    position: "row" | "column";
+    placeholder?: string;
+    isSearch?: boolean;
+    isMultiple?: boolean;
+    zIndex?: number;
+    position?: "row" | "column";
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import CustomSelect from "./components/CustomSelect";
+import CustomSelect from "@/app/components/CustomSelect";
 import { iDataOption } from "./components/CustomSelect/CustomSelect.type";
 
 export interface iDataSubmit {
@@ -65,13 +65,9 @@ export default function Home() {
                 <CustomSelect
                     id={id_input_position}
                     data={data}
-                    isMultiple={true}
-                    isSearch={true}
-                    zIndex={999}
                     value={selectData}
                     onSelect={(data: iDataOption[]) => setSelectData(data)}
                     label="Position"
-                    position="row"
                     placeholder="Select Your Position"
                 />
                 <div className="form-group">
